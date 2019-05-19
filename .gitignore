@@ -1,0 +1,4 @@
+*.swp
+*.tfstate*
+tf/.terraform/
+tf/ssh/wp-key*
