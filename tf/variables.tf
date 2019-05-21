@@ -20,3 +20,7 @@ data "aws_ami" "ubuntu" {
 data "http" "myip" {
     url = "https://api.ipify.org"
 }
+
+variable "domain_name" {
+    default = "demozone.com"
+}
