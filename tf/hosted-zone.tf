@@ -2,6 +2,10 @@
 
 resource "aws_route53_zone" "primary" {
     name = "${var.domain_name}"
+
+    provisioner "local-exec" {
+        command = "./r53domain.py ${var.domain_name} ${join(",", self.name_servers)}"
+    }
 }
 
 
@@ -23,8 +27,4 @@ resource "aws_route53_record" "alias" {
         zone_id = "${aws_route53_zone.primary.zone_id}"
         evaluate_target_health = false
     }
-}
-
-output "name_servers" {
-    value = "${aws_route53_zone.primary.name_servers}"
 }
