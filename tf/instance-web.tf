@@ -11,10 +11,6 @@ resource "aws_instance" "wordpress" {
     tags = {
         name = "wordpress"
     }
-
-    provisioner "local-exec" {
-        command = "echo ${aws_instance.wordpress.public_ip} > public_ips.txt"
-    }
 }
 
 output "image_id" {
