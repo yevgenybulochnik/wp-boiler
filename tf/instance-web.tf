@@ -8,7 +8,7 @@ resource "aws_instance" "wordpress" {
         "${aws_security_group.wordpress.id}"
     ]
 
-    tags {
+    tags = {
         name = "wordpress"
     }
 

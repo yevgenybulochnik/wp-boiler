@@ -21,7 +21,7 @@ resource "aws_route53_record" "alias" {
     zone_id = "${aws_route53_zone.primary.zone_id}"
     name = "${var.domain_name}"
     type = "A"
-    
+
     alias {
         name = "${aws_route53_record.www.name}"
         zone_id = "${aws_route53_zone.primary.zone_id}"
