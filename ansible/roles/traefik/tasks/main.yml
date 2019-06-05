@@ -1,0 +1,17 @@
+---
+- name: Copy docker-compose files
+  copy:
+    src: ../../../../docker
+    dest: /home/ubuntu/
+    directory_mode: yes
+    owner: ubuntu
+    group: ubuntu
+
+- name: Adjust permissions
+  file:
+    path: /home/ubuntu/docker
+    state: directory
+    recurse: yes
+    owner: ubuntu
+    group: ubuntu
+    mode: u=rwX,g=rwX,o=rX

@@ -1,0 +1,36 @@
+---
+- name: Get fail2ban repo
+  git:
+    repo: https://github.com/fail2ban/fail2ban.git
+    dest: /tmp/f2b
+    version: "0.10"
+
+- name: Execute fail2ban install
+  shell: python3 setup.py install
+  args:
+    chdir: /tmp/f2b
+    creates: /etc/fail2ban
+
+- name: Copy files for service
+  copy:
+    src: /tmp/f2b/files/debian-initd
+    dest: /etc/init.d/fail2ban
+    mode: u+rwx,g+rwx
+    remote_src: yes
+
+- name: Enable fail2ban service
+  service:
+    name: fail2ban
+    enabled: yes
+
+- name: Start fail2ban service
+  service:
+    name: fail2ban
+    state: started
+
+- name: Copy local jail
+  copy:
+    src: ../files/jail.local
+    dest: "/etc/fail2ban/"
+  notify:
+    - restart fail2ban

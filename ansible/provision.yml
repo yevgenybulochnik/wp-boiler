@@ -1,0 +1,6 @@
+---
+- hosts: wp
+  roles:
+    - fail2ban
+    - docker_setup
+    - traefik
