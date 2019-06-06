@@ -1,5 +1,4 @@
 
-
 data "aws_ami" "ubuntu" {
     most_recent = true
 
@@ -19,16 +18,4 @@ data "aws_ami" "ubuntu" {
 
 data "http" "myip" {
     url = "https://api.ipify.org"
-}
-
-variable "domain_name" {
-    default = "demozone.com"
-}
-
-variable "provision_r53domain" {
-    default = false
-}
-
-variable "setup_zone" {
-    default = false
 }

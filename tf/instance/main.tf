@@ -12,7 +12,3 @@ resource "aws_instance" "wordpress" {
         name = "wordpress"
     }
 }
-
-output "image_id" {
-    value = "${data.aws_ami.ubuntu.id}"
-}
