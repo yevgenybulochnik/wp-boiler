@@ -24,3 +24,11 @@ data "http" "myip" {
 variable "domain_name" {
     default = "demozone.com"
 }
+
+variable "provision_r53domain" {
+    default = false
+}
+
+variable "setup_zone" {
+    default = false
+}
