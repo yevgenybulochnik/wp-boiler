@@ -1,0 +1,45 @@
+version: "3.1"
+
+services:
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy
+    environment:
+      - SERVICES=1
+      - NETWORKS=1
+      - TASKS=1
+      - CONTAINERS=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - traefik.enable=false
+    networks:
+      - traefik
+
+  traefik:
+    image: traefik
+    environment:
+      AUTH_USER:
+      AUTH_PASSWORD:
+    env_file:
+      - .env
+    ports:
+      - "80:80"
+      - "443:443"
+    expose:
+      - "8080"
+    labels:
+      traefik.frontend.rule: PathPrefixStrip:/tdash
+      traefik.port: 8080
+      traefik.frontend.auth.basic: ${AUTH_USER}:${AUTH_PASSWORD}
+    volumes:
+      - ./traefik.toml:/traefik.toml
+      - ./acme.json:/acme.json
+    depends_on:
+      - docker-socket-proxy
+    networks:
+      - traefik
+      - traefik-apps
+
+networks:
+  traefik:
+  traefik-apps:

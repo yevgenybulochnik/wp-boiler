@@ -1,0 +1,19 @@
+defaultEntryPoints = ["http", "https"]
+
+logLevel = "INFO"
+
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+  [entryPoints.https]
+    address = ":443"
+    [entryPoints.https.tls]
+
+[accessLog]
+[api]
+  
+
+[docker]
+endpoint= "tcp://docker-socket-proxy:2375"
