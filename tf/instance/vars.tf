@@ -19,3 +19,7 @@ data "aws_ami" "ubuntu" {
 data "http" "myip" {
     url = "https://api.ipify.org"
 }
+
+variable "instance-type" {
+    default = "t2.micro"
+}
