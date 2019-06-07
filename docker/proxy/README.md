@@ -3,8 +3,8 @@ This service contains both traefik and a docker socket proxy container. The purp
 
 ### Env Vars
 ```
-AUTH_USER       # Username for basic auth
-AUTH_PASSWORD   # Password for basic auth (Note: use htpasswd)
+AUTH_USER       # Username for basic auth for traefik dashboard
+AUTH_PASSWORD   # Password for basic auth (Note: use htpasswd) for dashboard
 ```
 
 ### Networking
