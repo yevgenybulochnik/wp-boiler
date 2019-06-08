@@ -20,8 +20,6 @@ services:
     environment:
       AUTH_USER:
       AUTH_PASSWORD:
-    env_file:
-      - .env
     ports:
       - "80:80"
       - "443:443"
