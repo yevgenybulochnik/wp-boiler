@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+import subprocess
+import re
+from pathlib import Path
+
+# This is a simple convenience script which reads the ansible host file and sshs into the remote server under the user ubuntu. This does not support multiple ip addresses but should in the future along with specifying a login user
+
+ansible_hosts = Path(__file__).resolve().parent.parent / 'ansible' / 'hosts'
+contents = ansible_hosts.read_text()
+host_ips = re.findall(r'\d+.\d+.\d+.\d+', contents)
+
+if len(host_ips) > 1:
+    print("Multiple Host ips found exiting")
+else:
+    subprocess.run(["ssh", f'ubuntu@{host_ips[0]}'])
