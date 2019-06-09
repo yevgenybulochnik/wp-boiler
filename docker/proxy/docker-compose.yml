@@ -1,4 +1,9 @@
-version: "3.1"
+version: "3.4"
+x-logging:
+  &default-logging
+  options:
+    max-size: "2m"
+    max-file: "5"
 
 services:
   docker-socket-proxy:
@@ -14,6 +19,7 @@ services:
       - traefik.enable=false
     networks:
       - traefik
+    logging: *default-logging
 
   traefik:
     image: traefik
@@ -38,6 +44,7 @@ services:
     networks:
       - traefik
       - traefik-apps
+    logging: *default-logging
 
 networks:
   traefik:
