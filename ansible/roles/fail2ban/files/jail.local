@@ -1,2 +1,14 @@
 [sshd]
 enabled = true
+
+[traefik-auth-update]
+logpath= /var/log/traefik/access.log
+enabled = true
+maxretry = 3
+banaction = docker-action
+
+[wplogin]
+logpath= /var/log/traefik/access.log
+enabled = true
+maxretry = 3
+banaction = docker-action

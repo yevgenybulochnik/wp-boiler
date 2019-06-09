@@ -32,6 +32,7 @@ services:
     volumes:
       - ./traefik.toml:/traefik.toml
       - ./acme.json:/acme.json
+      - /var/log/traefik/access.log:/var/log/traefik/access.log
     depends_on:
       - docker-socket-proxy
     networks:

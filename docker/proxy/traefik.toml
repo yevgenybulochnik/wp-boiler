@@ -12,8 +12,10 @@ logLevel = "INFO"
     [entryPoints.https.tls]
 
 [accessLog]
+  filePath = "/var/log/traefik/access.log"
+
 [api]
   
 
 [docker]
-endpoint= "tcp://docker-socket-proxy:2375"
+endpoint = "tcp://docker-socket-proxy:2375"

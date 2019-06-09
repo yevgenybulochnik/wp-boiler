@@ -32,5 +32,36 @@
   copy:
     src: ../files/jail.local
     dest: "/etc/fail2ban/"
+
+- name: Copy docker-action
+  copy:
+    src: ../files/docker-action.conf
+    dest: "/etc/fail2ban/action.d/"
+
+- name: Copy treafik-auth-update
+  copy:
+    src: ../files/traefik-auth-update.conf
+    dest: "/etc/fail2ban/filter.d/"
+
+- name: Copy wplogin
+  copy:
+    src: ../files/wplogin.conf
+    dest: "/etc/fail2ban/filter.d/"
+
+- name: Create traefik log dir
+  file:
+    path: /var/log/traefik
+    state: directory
+
+- name: Create initial traefik log file
+  copy:
+    content: ""
+    dest: /var/log/traefik/access.log
+    force: no
   notify:
     - restart fail2ban
+
+- name:
+  service:
+    name: fail2ban
+    state: restarted
