@@ -1,0 +1,78 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress
+    restart: always
+    expose:
+      - 80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${WP_USER}
+      WORDPRESS_DB_PASSWORD: ${WP_PASSWORD}
+      WORDPRESS_DB_NAME: ${WP_DB}
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - internal
+      - proxy_traefik-apps
+    labels:
+      traefik.backend: blog
+      traefik.frontend.rule: Host:${WP_DOMAIN}
+      traefik.docker.network: proxy_traefik-apps
+      traefik.port: 80
+
+  wordpress-cli:
+    depends_on:
+      - db
+      - wordpress
+    image: wordpress:cli
+    user: xfs
+    environment:
+      WP_DOMAIN:
+      WP_TITLE:
+      WP_USER:
+      WP_PASSWORD:
+      WP_EMAIL:
+    command: >
+      /bin/sh -c '
+      sleep 10;
+      wp core install \
+        --path="/var/www/html" \
+        --url=$WP_DOMAIN \
+        --title=$WP_TITLE \
+        --admin_user=$WP_USER \
+        --admin_password=$WP_PASSWORD \
+        --admin_email=$WP_EMAIL'
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - internal
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${WP_DB}
+      MYSQL_USER: ${WP_USER}
+      MYSQL_PASSWORD: ${WP_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - internal
+    labels:
+      - traefik.enable=false
+
+volumes:
+  db_data:
+  wp_data:
+
+networks:
+  proxy_traefik-apps:
+    external: true
+  internal:
+    external: false
