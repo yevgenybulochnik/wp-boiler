@@ -15,3 +15,8 @@
     owner: ubuntu
     group: ubuntu
     mode: u=rwX,g=rwX,o=rX
+
+- name: Copy logrotate config
+  copy:
+    src: ../files/traefik
+    dest: /etc/logrotate.d/
