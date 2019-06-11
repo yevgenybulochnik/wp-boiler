@@ -22,7 +22,7 @@ resource "aws_security_group" "wordpress" {
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_blocks = ["${data.http.myip.body}/32"]
+        cidr_blocks =(var.ssh-ip == [""] ? ["${data.http.myip.body}/32"] : var.ssh-ip)
     }
 
     egress {

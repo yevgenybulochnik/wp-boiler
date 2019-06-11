@@ -23,3 +23,7 @@ data "http" "myip" {
 variable "instance-type" {
     default = "t2.micro"
 }
+
+variable "ssh-ip" {
+    default = [""]
+}
