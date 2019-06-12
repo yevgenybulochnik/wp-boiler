@@ -16,6 +16,11 @@
     group: ubuntu
     mode: u=rwX,g=rwX,o=rX
 
+- name: Adjust acme.json permission
+  file:
+    path: /home/ubuntu/docker/proxy/acme.json
+    mode: 0600
+
 - name: Copy logrotate config
   copy:
     src: ../files/traefik
