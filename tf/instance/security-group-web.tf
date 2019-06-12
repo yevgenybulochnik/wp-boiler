@@ -1,7 +1,7 @@
 
 
-resource "aws_security_group" "wordpress" {
-    name = "wp-sg"
+resource "aws_security_group" "instance_sg" {
+    name = "instance_sg"
     description = "Allow 80 and 443"
 
     ingress {

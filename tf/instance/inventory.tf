@@ -1,13 +1,13 @@
 
 
-data "template_file" "wp_inventory" {
+data "template_file" "ansible_inventory" {
     template = "${file("${path.module}/templates/hosts.tpl")}"
     vars = {
-        wp_ip = aws_instance.wordpress.public_ip
+        instance_ip = aws_instance.instance.public_ip
     }
 }
 
-resource "local_file" "wp_inventory" {
-    content = "${data.template_file.wp_inventory.rendered}"
+resource "local_file" "hosts" {
+    content = "${data.template_file.ansible_inventory.rendered}"
     filename = "../ansible/hosts"
 }

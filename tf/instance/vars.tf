@@ -27,3 +27,7 @@ variable "instance-type" {
 variable "ssh-ip" {
     default = [""]
 }
+
+variable "key-name" {
+    default = "key"
+}
