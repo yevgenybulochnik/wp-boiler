@@ -26,15 +26,25 @@ services:
     environment:
       AUTH_USER:
       AUTH_PASSWORD:
+      ACME_ENABLE:
+      ACME_EMAIL:
     ports:
       - "80:80"
       - "443:443"
     expose:
       - "8080"
+    command:
+      - --acme=${ACME_ENABLE}
+      - --acme.email=${ACME_EMAIL}
+      - --acme.storage=acme.json
+      - --acme.onhostrule=${ACME_ENABLE}
+      - --acme.entrypoint=https
+      - --acme.httpchallenge
+      - --acme.httpchallenge.entrypoint=http
     labels:
-      traefik.frontend.rule: PathPrefixStrip:/tdash
+      traefik.frontend.rule: PathPrefix:/tdash;PathPrefixStrip:/tdash
       traefik.port: 8080
-      traefik.frontend.auth.basic: ${AUTH_USER}:${AUTH_PASSWORD}
+      traefik.frontend.auth.basic.users: ${AUTH_USER}:${AUTH_PASSWORD}
     volumes:
       - ./traefik.toml:/traefik.toml
       - ./acme.json:/acme.json
