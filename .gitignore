@@ -1,6 +1,6 @@
 *.swp
 *.tfstate*
 tf/.terraform/
-tf/ssh/wp-key*
+tf/ssh/instance-key*
 ansible/hosts
 .env
