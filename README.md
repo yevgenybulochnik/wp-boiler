@@ -8,7 +8,7 @@ Boilerplate setup to create a wordpress site using terraform to stand up resourc
     - [x] Explore use of local-exec with boto3 to set domain nameservers
     - [ ] Explore use of RDS, not to be implemented initially
     - [x] Change to use modules
-    - [ ] Refactor module vars and resource names
+    - [x] Refactor module vars and resource names
     - [ ] Add Readmes to modules
 - Ansible
     - Primarily responsible for setting up limited host dependencies and potentially template files for docker
@@ -17,6 +17,6 @@ Boilerplate setup to create a wordpress site using terraform to stand up resourc
     - [ ] PSWDless sudo user with dotfiles and editor setup?
 - Docker
     - Setup must allow for postgres, django-rest-framework, and react/angular setups in the future. 
-    - [ ] Traefik setup for http and https
+    - [x] Traefik setup for http and https
     - Wordpress
     - WP-Cli
