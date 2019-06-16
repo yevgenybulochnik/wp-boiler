@@ -1,5 +1,5 @@
 # WordPress BoilerPlate
-Boilerplate setup to create a wordpress site using terraform to stand up resources on AWS, ansible to provision resources and docker to execute application code. 
+Boilerplate setup to create a wordpress site using terraform to stand up resources on AWS, ansible to provision resources and docker to execute application code.
 #### Tasks
 - Terraform
     - [x] Stand up a single EC2 instance
@@ -12,11 +12,11 @@ Boilerplate setup to create a wordpress site using terraform to stand up resourc
     - [ ] Add Readmes to modules
 - Ansible
     - Primarily responsible for setting up limited host dependencies and potentially template files for docker
-    - [x] Install docker, and docker-compose 
+    - [x] Install docker, and docker-compose
     - [x] Setup fail2ban
     - [ ] PSWDless sudo user with dotfiles and editor setup?
 - Docker
-    - Setup must allow for postgres, django-rest-framework, and react/angular setups in the future. 
+    - Setup must allow for postgres, django-rest-framework, and react/angular setups in the future.
     - [x] Traefik setup for http and https
     - Wordpress
     - WP-Cli
