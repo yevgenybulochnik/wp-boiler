@@ -5,6 +5,9 @@ This service contains both traefik and a docker socket proxy container. The purp
 ```
 AUTH_USER       # Username for basic auth for traefik dashboard
 AUTH_PASSWORD   # Password for basic auth (Note: use htpasswd) for dashboard
+
+ACME_ENABLE     # Enable use of letsencrypt
+ACME_EMAIL      # Email to register domains
 ```
 
 ### Networking
