@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
- dir=${PWD##*/}
+dir=${PWD##*/}
 container_basename=${dir//./}
 db_container="${container_basename}_db_1"
 wp_container="${container_basename}_wordpress_1"
