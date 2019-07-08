@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+dir=${PWD##*/}
+container_basename=${dir//./}
+db_container="${container_basename}_db_1"
+wp_container="${container_basename}_wordpress_1"
+
+docker run \
+    --rm \
+    --volumes-from ${db_container} \
+    -v ${PWD}/vbackup:/vbackup \
+    ubuntu \
+    tar xzvf /vbackup/dbbackup.tar
+
+docker run \
+    --rm \
+    --volumes-from ${wp_container} \
+    -v ${PWD}/vbackup:/vbackup \
+    ubuntu \
+    tar xzvf /vbackup/wpbackup.tar
