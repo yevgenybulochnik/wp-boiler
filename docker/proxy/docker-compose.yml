@@ -43,6 +43,7 @@ services:
       - --acme.httpchallenge.entrypoint=http
     labels:
       traefik.frontend.rule: PathPrefix:/tdash;PathPrefixStrip:/tdash
+      traefik.frontend.priority: 100
       traefik.port: 8080
       traefik.frontend.auth.basic.users: ${AUTH_USER}:${AUTH_PASSWORD}
     volumes:
